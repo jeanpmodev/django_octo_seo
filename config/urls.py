@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from src.django_octo_seo.views import SEORuntimeShowcaseView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Main dynamic root endpoint
+    path('', SEORuntimeShowcaseView.as_view(), name='seo_showcase'),
 ]
