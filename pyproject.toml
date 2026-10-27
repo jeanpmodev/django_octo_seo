@@ -1,0 +1,17 @@
+[project]
+name = "django-octo-seo"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "jeanpmodev", email = "jeanpmodev@gmail.com" }
+]
+dependencies = [
+    "django>=6.1.2",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[tool.rye]
+managed = true
+virtual = true
+dev-dependencies = []

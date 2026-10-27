@@ -1,0 +1,29 @@
+# python generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# ==========================================
+# Rye / Python Environment
+# ==========================================
+.venv/
+.python-version
+.project-id
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ==========================================
+# Django Local Configurations & Media
+# ==========================================
+.env
+local_settings.py
+media/
+staticfiles/
