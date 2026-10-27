@@ -1,9 +1,10 @@
 # django_octo_seo
 
-[![License: MIT](https://shields.io)](LICENSE)
-[![Python](https://shields.io)](https://python.org)
-[![Framework](https://shields.io)](https://djangoproject.com)
-[![Package Manager](https://shields.io)](https://astral.sh)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.11+-blue)](https://python.org)
+[![Framework: Django](https://img.shields.io/badge/Framework-Django-darkgreen)](https://djangoproject.com)
+[![Package Manager: Rye](https://img.shields.io/badge/Package_Manager-Rye-orange)](https://astral.sh)
+
 
 **django_octo_seo** is a production-grade, high-performance SEO injection engine designed for scalable web infrastructures. It serves as a core decoupled module under the **Django-Octo** structural framework ecosystem.
 
