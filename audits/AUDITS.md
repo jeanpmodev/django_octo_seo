@@ -17,7 +17,7 @@ This directory contains historical technical audit records and social signal val
 
 ### 2. Social Preview & Open Graph Validation ("Pass" Evidence)
 * **File:** [live_social_validation.jpg](./live_social_validation.jpg)
-* **Verification Tool:** [Social Share Preview](https://socialsharepreview.com)
+* **Verification Tool:** [Social Share Preview](https://socialsharepreview.com/?url=https://ticapsoriginal.com)
 * **Purpose:** Proves that the domain's Open Graph (OG) tags, Twitter/X Cards, and structured social metadata passed technical validation checks.
 * **Key Metrics & Insights:**
   * **Social Share Readiness:** Confirms that shared links render rich previews (title, description, and featured image) cleanly across social platforms.
