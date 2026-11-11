@@ -50,14 +50,7 @@ cd django_octo_seo
 rye sync
 ```
 
-### 2. Apply Database Schema
-Compile the core modular definitions and execute migrations over the SQLite database:
-```bash
-rye run python manage.py makemigrations src.django_octo_seo
-rye run python manage.py migrate
-```
-
-### 3. Initialize Runtime Service
+### 2. Initialize Runtime Service
 Fire up the local development engine instance:
 ```bash
 rye run python manage.py runserver
