@@ -6,7 +6,7 @@ class SEORuntimeShowcaseView(DetailView):
     High-performance detail view controller parsing SEO metric indices.
     """
     model = SuperSEOPage
-    template_name = "seo_showcase.html"
+    template_name = "django_octo_seo/seo_showcase.html"
     context_object_name = "seo_engine"
 
     def get_object(self, queryset=None):

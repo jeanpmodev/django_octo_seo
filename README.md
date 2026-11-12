@@ -4,6 +4,7 @@
 [![Python](https://img.shields.io/badge/Python-3.11+-blue)](https://python.org)
 [![Framework: Django](https://img.shields.io/badge/Framework-Django-darkgreen)](https://djangoproject.com)
 [![Package Manager: Rye](https://img.shields.io/badge/Package_Manager-Rye-orange)](https://astral.sh)
+[![PyPI version](https://shields.io)](https://pypi.org)
 
 
 **django_octo_seo** is a production-grade, high-performance SEO injection engine designed for scalable web infrastructures. It serves as a core decoupled module under the **Django-Octo** structural framework ecosystem.
@@ -38,9 +39,50 @@ The architecture exposes **8 distinct, highly optimized matrix layers** linked d
 
 ---
 
-## ⚙️ Installation & Setup (Using Rye)
+## ⚡ Installation & Quick Start (PyPI)
 
-This repository includes a pre-populated `db.sqlite3` containing real telemetry data from [ticapsoriginal.com](https://ticapsoriginal.com) to allow immediate architectural verification.
+Install the official package directly into any modern Django (`>=6.1.2`) and Python (`>=3.12`) infrastructure using **pip** or **Rye**:
+
+### 1. Install Package
+```bash
+pip install django-octo-seo
+```
+Or using the Rust-backed **Rye** package manager:
+```bash
+rye add django-octo-seo
+```
+
+### 2. Register App & Migrate
+Add `"django_octo_seo"` to `INSTALLED_APPS` in your `settings.py`:
+```python
+INSTALLED_APPS = [
+    # ...
+    "django_octo_seo",
+]
+```
+Apply the database schema migrations:
+```bash
+python3 manage.py migrate
+```
+
+### 3. Mount the Showcase Endpoint
+Include the self-contained module routes in your main `urls.py`:
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("seo-demo/", include("django_octo_seo.urls")),
+]
+```
+Start the server (`python3 manage.py runserver`) and navigate to `http://127.0.0` to inspect the live semantic HTML5 and JSON-LD head layer rendered via a single database lookup.
+
+---
+
+## ⚙️ Local Sandbox & Telemetry Demo (Using Rye)
+
+This repository includes a pre-populated `db.sqlite3` containing real telemetry data from [ticapsoriginal.com](https://ticapsoriginal.com) to allow immediate architectural verification without manual setup.
 
 ### 1. Clone & Synchronize Environment
 Clone the repository and trigger the Rust-backed Rye environment compiler to lock and synchronize dependencies:
@@ -53,7 +95,7 @@ rye sync
 ### 2. Initialize Runtime Service
 Fire up the local development engine instance:
 ```bash
-rye run python manage.py runserver
+python3 manage.py runserver
 ```
 Navigate to `http://127.0.0` to inspect the structural head layer live.
 

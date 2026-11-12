@@ -1,18 +1,37 @@
+[build-system]
+requires = ["hatchling<1.26"]
+build-backend = "hatchling.build"
+
 [project]
 name = "django-octo-seo"
-version = "0.1.1"
-description = "Django-based technical SEO architecture for large-scale URL indexing and Open Graph optimization."
+version = "0.1.3"
+description = "Django-based technical SEO architecture for large-scale URL indexing and single-query metadata rendering."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
 authors = [
     { name = "jeanpmodev", email = "jeanpmodev@gmail.com" }
+]
+keywords = ["django", "seo", "json-ld", "open-graph", "metadata", "schema-org"]
+classifiers = [
+    "Framework :: Django",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
 ]
 dependencies = [
     "django>=6.1.2",
     "python-dotenv",
 ]
-readme = "README.md"
-requires-python = ">= 3.12"
+
+[project.urls]
+Homepage = "https://github.com/jeanpmodev/django_octo_seo"
+Repository = "https://github.com/jeanpmodev/django_octo_seo"
 
 [tool.rye]
 managed = true
-virtual = true
 dev-dependencies = []
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/django_octo_seo"]

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="{{ seo_engine.language_code|default:'en' }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- ID 01: Global Security Core -->
+    <meta http-equiv="X-Frame-Options" content="{{ seo_engine.x_frame_options|default:'deny' }}">
+
+    <!-- ID 02 to 05: Semantic Web Core -->
+    <title>{{ seo_engine.title }}</title>
+    <meta name="description" content="{{ seo_engine.description }}">
+    <meta name="keywords" content="{{ seo_engine.keywords }}">
+    <meta name="author" content="{{ seo_engine.author }}">
+    
+    <link rel="canonical" href="{{ seo_engine.canonical_url }}"/>
+    
+    <!-- ID 06: Visual Asset Micro-format -->
+    <meta name="thumbnail" content="{{ request.scheme }}://{{ request.get_host }}/static/images/{{ seo_engine.thumbnail_image }}"/>
+
+    <!-- ID 04: Unified Multi-Crawler Fallback Optimization -->
+    <meta name="robots" content="{{ seo_engine.robots_directives|default:'index, follow' }}">
+
+    <!-- ID 07: Open Graph Protocol (Social Graph) -->
+    <meta property="og:type" content="{{ seo_engine.og_type }}">
+    <meta property="og:title" content="{{ seo_engine.title }}">
+    <meta property="og:description" content="{{ seo_engine.description }}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}/static/images/{{ seo_engine.og_image }}">
+    <meta property="og:site_name" content="ticapsoriginal.com"/>
+
+    <!-- ID 07: Twitter Card Extension -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="{{ seo_engine.twitter_site }}"/>
+    <meta name="twitter:creator" content="{{ seo_engine.twitter_creator }}"/>
+    <meta name="twitter:title" content="{{ seo_engine.title }}"/>
+    <meta name="twitter:description" content="{{ seo_engine.description }}"/>
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}/static/images/{{ seo_engine.og_image }}"/>
+
+    <!-- ID 08: Schema.org JSON-LD Structured Data Array -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "ticapsoriginal",
+        "url": "{{ seo_engine.canonical_url }}",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "{{ seo_engine.canonical_url }}search/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "{{ seo_engine.json_ld_schema_type|default:'BlogPosting' }}",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "{{ seo_engine.canonical_url }}"
+        },
+        "headline": "{{ seo_engine.headline_structured }}",
+        "description": "{{ seo_engine.description }}",
+        "image": "{{ request.scheme }}://{{ request.get_host }}/static/images/{{ seo_engine.thumbnail_image }}",  
+        "datePublished": "{{ seo_engine.date_published|date:'c' }}",
+        "dateModified": "{{ seo_engine.date_modified|date:'c' }}",
+        "author": {
+          "@type": "Person",
+          "name": "Jean",
+          "url": "https://linkedin.com"
+        },  
+        "publisher": {
+          "@type": "Organization",
+          "name": "ticapsoriginal.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ request.scheme }}://{{ request.get_host }}/static/images/{{ seo_engine.thumbnail_image }}"
+          }
+        }
+      }
+    ]
+    </script>
+
+    <!-- Tailwind CSS Script CDN -->
+    <script src="https://tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+    
+    <!-- Hero Header Component -->
+    <header class="bg-indigo-900 text-white py-12 px-6 shadow-md">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl font-extrabold tracking-tight">django_octo_seo</h1>
+            <p class="text-indigo-200 text-lg mt-2 font-medium">Enterprise-grade database-to-head metadata mapping engine</p>
+        </div>
+    </header>
+
+    <!-- Main Dynamic Interface -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-10">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8">
+            
+            <!-- Metadata System Context Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-100 pb-6 gap-4">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900">📋 SEO Dynamic Coverage Matrix</h2>
+                    <p class="text-slate-500 text-sm mt-1">Live telemetry metrics synchronized straight from the <code>db.sqlite3</code> repository layer.</p>
+                </div>
+                <div>
+                    <a href="https://ticapsoriginal.com" target="_blank" class="inline-flex items-center justify-center px-4 py-2 border border-indigo-600 rounded-lg text-sm font-semibold text-indigo-600 hover:bg-indigo-50 transition-colors shadow-sm">
+                        Ecosystem Docs
+                    </a>
+                </div>
+            </div>
+
+            <!-- Responsive Architecture Grid Table -->
+            <div class="overflow-x-auto mt-6">
+                <table class="min-w-full divide-y divide-slate-200 text-left text-sm">
+                    <thead class="bg-slate-50 text-slate-600 uppercase font-semibold text-xs tracking-wider">
+                        <tr>
+                            <th scope="col" class="px-4 py-4 w-24 text-center">Metric ID</th>
+                            <th scope="col" class="px-6 py-4">Target Architecture Component</th>
+                            <th scope="col" class="px-6 py-4">Django Model Mapping</th>
+                            <th scope="col" class="px-6 py-4">Active Runtime Dataset</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-slate-700">
+                        <!-- ID 01 -->
+                        <tr class="hover:bg-slate-50/70 transition-colors">
+                            <td class="px-4 py-4 text-center">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-800">01</span>
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-slate-900">Security Frame Controller</td>
+                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">x_frame_options</td>
+                            <td class="px-6 py-4"><code class="bg-slate-100 px-2 py-1 rounded text-xs text-slate-600 font-mono">{{ seo_engine.x_frame_options }}</code></td>
+                        </tr>
+                        <!-- ID 02 -->
+                        <tr class="hover:bg-slate-50/70 transition-colors">
+                            <td class="px-4 py-4 text-center">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">02</span>
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-slate-900">Semantic Document Title</td>
+                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">title</td>
+                            <td class="px-6 py-4 class-truncated font-medium text-slate-900">"{{ seo_engine.title }}"</td>
+                        </tr>
+                        <!-- ID 03 -->
+                        <tr class="hover:bg-slate-50/70 transition-colors">
+                            <td class="px-4 py-4 text-center">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">03</span>
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-slate-900">SERP Snippet Description</td>
+                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">description</td>
+                            <td class="px-6 py-4 text-slate-500 italic max-w-xs md:max-w-md truncate">{{ seo_engine.description }}</td>
+                        </tr>
+                        <!-- ID 04 -->
+                        <tr class="hover:bg-slate-50/70 transition-colors">
+                            <td class="px-4 py-4 text-center">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">04</span>
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-slate-900">Global Crawler Directives</td>
+                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">robots_directives</td>
+                            <td class="px-6 py-4"><span class="bg-slate-800 text-slate-100 text-xs font-mono px-2 py-1 rounded">{{ seo_engine.robots_directives }}</span></td>
+                        </tr>
+                        <!-- ID 05 -->
+                        <tr class="hover:bg-slate-50/70 transition-colors">
+                            <td class="px-4 py-4 text-center">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">05</span>
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-slate-900">Canonical Integrity URL</td>
+                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">canonical_url</td>
+                            <td class="px-6 py-4"><a href="{{ seo_engine.canonical_url }}" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-mono text-xs underline">{{ seo_engine.canonical_url }}</a></td>
+                            </tr>
+                        <!-- Metric 06: Micro-Format Asset -->
+                        <tr class="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <td class="px-6 py-4"><span class="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-800 ring-1 ring-inset ring-amber-600/20">06</span></td>
+                            <td class="px-6 py-4 font-semibold text-slate-900">Micro-Format Asset</td>
+                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">thumbnail_image</td>
+                            <td class="px-6 py-4 text-slate-600 font-mono text-xs">{{ seo_engine.thumbnail_image }}</td>
+                        </tr>
+                        <!-- Metric 07: Social Semantic Graph (OG) -->
+                        <tr class="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <td class="px-6 py-4"><span class="inline-flex items-center rounded-md bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-800 ring-1 ring-inset ring-emerald-600/20">07</span></td>
+                            <td class="px-6 py-4 font-semibold text-slate-900">Social Semantic Graph (OG)</td>
+                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">og_title / og_image</td>
+                            <td class="px-6 py-4 text-slate-600">Mapped with Open Graph protocol layer</td>
+                        </tr>
+                        <!-- Metric 08: Automated Schema Datasets -->
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="px-6 py-4"><span class="inline-flex items-center rounded-md bg-sky-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-sky-600/20">08</span></td>
+                            <td class="px-6 py-4 font-semibold text-slate-900">Automated Schema Datasets</td>
+                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">json_ld_schema_type</td>
+                            <td class="px-6 py-4 text-slate-600">Injected via <span class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded text-slate-800">{{ seo_engine.json_ld_schema_type }}</span> context node</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer Meta Info -->
+        <footer class="mt-12 text-center border-t border-slate-100 pt-6">
+            <p class="text-xs text-slate-400">
+                Managed by <strong class="text-slate-600">Rye Python Environment</strong>. Distributed under the permissive <strong class="text-slate-600">MIT License</strong>.
+            </p>
+            <p class="text-xs text-indigo-500 mt-1">
+                Powered by the <a href="https://ticapsoriginal.com" target="_blank" class="hover:text-indigo-700 underline font-medium">ticapsoriginal.com</a> ecosystem telemetry.
+            </p>
+        </footer>
+    </main>
+</body>
+</html>

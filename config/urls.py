@@ -15,11 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from src.django_octo_seo.views import SEORuntimeShowcaseView
+from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # Main dynamic root endpoint
-    path('', SEORuntimeShowcaseView.as_view(), name='seo_showcase'),
+    path("admin/", admin.site.urls),
+    path("", include("django_octo_seo.urls")),
 ]
