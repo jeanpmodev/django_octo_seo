@@ -1,5 +1,9 @@
 # 🧪 Quality Assurance & Testing Methodology
 
+[![Tests: pytest](https://img.shields.io/badge/Tests-pytest%20passed-2ea44f.svg)](#2-unit--query-count-validation-pytest)
+[![BDD: Behave](https://img.shields.io/badge/BDD-Behave%20verified-009688.svg)](#3-behavioral--bdd-specifications-behave)
+[![Load Test: Locust](https://img.shields.io/badge/Load_Test-11ms_median_%7C_0%25_fails-blueviolet.svg)](performance/locust_load_report.pdf)
+
 To preserve the **zero-bloat** philosophy of `django_octo_seo`, testing and benchmarking frameworks are intentionally excluded from `pyproject.toml` and production PyPI builds. They are installed on demand only when running the local QA suite.
 
 ---
