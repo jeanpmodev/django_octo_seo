@@ -9,9 +9,123 @@
 #   generate-hashes: false
 #   universal: false
 
+-e file:.
 asgiref==3.13.0
     # via django
+beautifulsoup4==4.15.0
+    # via behave-django
+behave==1.3.3
+    # via behave-django
+behave-django==2.0.0
+    # via django-octo-seo
+bidict==0.24.1
+    # via python-socketio
+blinker==1.9.0
+    # via flask
+brotli==1.2.1
+    # via geventhttpclient
+certifi==2026.10.23
+    # via geventhttpclient
+    # via requests
+charset-normalizer==3.5.2
+    # via requests
+click==8.5.1
+    # via flask
+colorama==0.4.6
+    # via behave
+configargparse==1.9.0
+    # via locust
+cucumber-expressions==20.2.0
+    # via behave
+cucumber-tag-expressions==11.0.1
+    # via behave
 django==6.1.2
+    # via behave-django
+    # via django-octo-seo
+flask==3.1.3
+    # via flask-cors
+    # via flask-login
+    # via locust
+flask-cors==6.0.5
+    # via locust
+flask-login==0.6.3
+    # via locust
+gevent==26.9.0
+    # via geventhttpclient
+    # via locust
+geventhttpclient==2.6.1
+    # via locust
+greenlet==3.5.6
+    # via gevent
+h11==0.16.0
+    # via wsproto
+idna==3.20
+    # via requests
+iniconfig==2.3.1
+    # via pytest
+itsdangerous==2.2.0
+    # via flask
+jinja2==3.1.6
+    # via flask
+locust==2.47.0
+markupsafe==3.0.4
+    # via flask
+    # via jinja2
+    # via werkzeug
+msgpack==1.2.4
+    # via locust
+packaging==26.3
+    # via pytest
+parse==1.22.4
+    # via behave
+    # via parse-type
+parse-type==0.6.6
+    # via behave
+pluggy==1.7.0
+    # via pytest
+psutil==7.2.2
+    # via locust
+pygments==2.21.0
+    # via pytest
+pytest==9.2.0
+    # via locust
+    # via pytest-django
+pytest-django==4.14.0
 python-dotenv==1.2.4
+    # via django-octo-seo
+python-engineio==4.15.1
+    # via locust
+    # via python-socketio
+python-socketio==5.18.1
+    # via locust
+pyzmq==27.3.0
+    # via locust
+requests==2.34.2
+    # via locust
+    # via python-socketio
+simple-websocket==1.1.0
+    # via python-engineio
+six==1.17.0
+    # via behave
+    # via parse-type
+soupsieve==4.1
+    # via beautifulsoup4
 sqlparse==0.6.0
     # via django
+typing-extensions==4.16.0
+    # via beautifulsoup4
+urllib3==2.8.0
+    # via requests
+websocket-client==1.9.2
+    # via python-socketio
+werkzeug==3.1.9
+    # via flask
+    # via flask-cors
+    # via flask-login
+    # via locust
+wsproto==1.3.2
+    # via simple-websocket
+zope-event==6.2
+    # via gevent
+zope-interface==8.7
+    # via gevent

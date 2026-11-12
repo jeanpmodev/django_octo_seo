@@ -4,7 +4,8 @@
 [![Python](https://img.shields.io/badge/Python-3.11+-blue)](https://python.org)
 [![Framework: Django](https://img.shields.io/badge/Framework-Django-darkgreen)](https://djangoproject.com)
 [![Package Manager: Rye](https://img.shields.io/badge/Package_Manager-Rye-orange)](https://astral.sh)
-[![PyPI version](https://shields.io)](https://pypi.org)
+![PyPI Version](https://img.shields.io/pypi/v/django-octo-seo)
+[![Latest on Django Packages](https://img.shields.io/badge/Django_Packages-django__octo__seo-8c3c26.svg)](https://djangopackages.org/packages/p/django-faq/)
 
 
 **django_octo_seo** is a production-grade, high-performance SEO injection engine designed for scalable web infrastructures. It serves as a core decoupled module under the **Django-Octo** structural framework ecosystem.
@@ -76,7 +77,7 @@ urlpatterns = [
     path("seo-demo/", include("django_octo_seo.urls")),
 ]
 ```
-Start the server (`python3 manage.py runserver`) and navigate to `http://127.0.0` to inspect the live semantic HTML5 and JSON-LD head layer rendered via a single database lookup.
+Start the server (`python3 manage.py runserver`) and navigate to `http://127.0.0.1:8000` to inspect the live semantic HTML5 and JSON-LD head layer rendered via a single database lookup.
 
 ---
 
@@ -97,9 +98,14 @@ Fire up the local development engine instance:
 ```bash
 python3 manage.py runserver
 ```
-Navigate to `http://127.0.0` to inspect the structural head layer live.
+Navigate to `127.0.0.1:8000` to inspect the structural head layer live.
 
 ---
+
+## 🧪 Quality Assurance & Testing
+
+This module is backed by a dedicated QA suite covering **Unit & Query-Count Tests (`pytest`)**, **BDD Specifications (`behave`)**, and **Load Testing (`locust`)**. To keep the core package minimal, test dependencies are installed on demand—see [TESTING.md](TESTING.md) for instructions and benchmark reports.
+
 
 ## 📄 License & Ecosystem Blueprint
 
