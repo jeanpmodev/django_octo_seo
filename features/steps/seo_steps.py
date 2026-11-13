@@ -21,13 +21,13 @@ def step_check_status(context, status_code):
 
 
 @then('the HTTP header "{header_name}" should be present')
-def step_check_header(context, header):
-    assert header in context.response.headers
+def step_check_header(context, header_name):
+    assert header_name in context.response.headers
 
 
 @then('the page should contain the "{meta_name}" meta tag')
-def step_check_og_tag(context, property_name):
-    assert f'property="{property_name}"' in context.html
+def step_check_og_tag(context, meta_name):
+    assert f'property="{meta_name}"' in context.html
 
 
 @then('the JSON-LD script should contain the "{schema_url}" context')
@@ -41,4 +41,3 @@ def step_check_json_ld(context, schema_url):
     data = json.loads(match.group(1))
     schemas = data if isinstance(data, list) else [data]
     assert any(item.get("@context") == schema_url for item in schemas)
-
