@@ -17,7 +17,7 @@ This module guarantees strict database-to-head tag integrity, mapping dynamic SE
 
 ---
 
-## ⚡ Key Architectural Features
+## 🔑 Key Architectural Features
 
 - **Unified Bot Controller:** Replaced fragmented crawler instructions (`Googlebot`, `Bingbot`, `Yandex`, `Baidu`) with an optimized single-pass meta-tag runtime execution.
 - **Single-Block JSON-LD Graphs:** Automated structural parsing of schema datasets (`WebSite`, `BlogPosting`) packaged into a single script rendering block to improve parsing speed.
@@ -84,9 +84,9 @@ Start the server (`python3 manage.py runserver`) and navigate to `http://127.0.0
 
 ---
 
-## ⚙️ Local Sandbox & Telemetry Demo (Using Rye)
+## ⚙️ Local Sandbox & Development Setup (Using Rye)
 
-This repository includes a pre-populated `db.sqlite3` containing real telemetry data from [ticapsoriginal.com](https://ticapsoriginal.com) to allow immediate architectural verification without manual setup.
+This repository keeps local database binaries excluded from version control to ensure clean environment isolation. You can initialize a fresh local SQLite schema directly via Django migrations.
 
 ### 1. Clone & Synchronize Environment
 Clone the repository and trigger the Rust-backed Rye environment compiler to lock and synchronize dependencies:
