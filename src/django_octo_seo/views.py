@@ -1,16 +1,20 @@
+import logging
 from django.views.generic import DetailView
 from .models import SuperSEOPage
+
+logger = logging.getLogger("django_octo_seo")
+
 
 class SEORuntimeShowcaseView(DetailView):
     """
     High-performance detail view controller parsing SEO metric indices.
     """
+
     model = SuperSEOPage
     template_name = "django_octo_seo/seo_showcase.html"
     context_object_name = "seo_engine"
 
     def get_object(self, queryset=None):
-        # Automatically fall back or select the active Ticapsoriginal instance
         obj, created = SuperSEOPage.objects.get_or_create(
             page_name="ticapsoriginal_home",
             defaults={
@@ -23,6 +27,11 @@ class SEORuntimeShowcaseView(DetailView):
                 "date_modified": "2024-09-05T08:00:00+03:00",
                 "og_title": "Ticapsoriginal - Professional IT Networking",
                 "og_description": "free url checkers, sitemaps to txt, sitemaps txt to xml, tsl security...",
-            }
+            },
         )
+        if created:
+            logger.warning(
+                "SEO fallback instance initialized for page_name=%s",
+                obj.page_name,
+            )
         return obj

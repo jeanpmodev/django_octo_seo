@@ -41,4 +41,3 @@ def test_json_ld_is_valid_and_xss_safe(client):
     assert all("@type" in item for item in schemas)
     assert "<script>" not in json.dumps(payload)
     assert all(item.get("@context") == "https://schema.org" for item in schemas)
-
