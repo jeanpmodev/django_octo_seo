@@ -12,34 +12,9 @@
 -e file:.
 asgiref==3.13.0
     # via django
-beautifulsoup4==4.15.0
-    # via behave-django
-behave==1.3.3
-    # via behave-django
-behave-django==2.0.0
-    # via django-octo-seo
-colorama==0.4.6
-    # via behave
-cucumber-expressions==20.2.0
-    # via behave
-cucumber-tag-expressions==11.0.1
-    # via behave
 django==6.1.2
-    # via behave-django
     # via django-octo-seo
-parse==1.22.4
-    # via behave
-    # via parse-type
-parse-type==0.6.6
-    # via behave
 python-dotenv==1.2.4
     # via django-octo-seo
-six==1.17.0
-    # via behave
-    # via parse-type
-soupsieve==4.1
-    # via beautifulsoup4
 sqlparse==0.6.0
     # via django
-typing-extensions==4.16.0
-    # via beautifulsoup4
