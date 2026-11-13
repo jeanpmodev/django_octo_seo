@@ -9,6 +9,7 @@
 [![Tests: pytest](https://img.shields.io/badge/Tests-pytest%20passed-2ea44f.svg)](https://github.com/jeanpmodev/django_octo_seo/blob/main/TESTING.md)
 [![BDD: Behave](https://img.shields.io/badge/BDD-Behave%20verified-009688.svg)](https://github.com/jeanpmodev/django_octo_seo/blob/main/TESTING.md)
 [![Load Test: Locust](https://img.shields.io/badge/Load_Test-11ms_median_%7C_0%25_fails-blueviolet.svg)](https://github.com/jeanpmodev/django_octo_seo/blob/main/performance/locust_load_report.pdf)
+[![CI](https://img.shields.io/github/actions/workflow/status/jeanpmodev/django_octo_seo/ci.yml?branch=main&label=CI)](https://github.com/jeanpmodev/django_octo_seo/actions/workflows/ci.yml)
 
 
 **django_octo_seo** is a production-grade, high-performance SEO injection engine designed for scalable web infrastructures. It serves as a core decoupled module under the **Django-Octo** structural framework ecosystem.

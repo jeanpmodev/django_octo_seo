@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  qa-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Rye
+        uses: eifinger/setup-rye@v4
+        with:
+          enable-cache: true
+
+      - name: Synchronize dependencies (including dev-dependencies)
+        run: rye sync
+
+      - name: Run database migrations
+        env:
+          PYTHONPATH: src
+        run: rye run python manage.py migrate
+
+      - name: Execute Unit & Query-Count Suite (pytest)
+        env:
+          PYTHONPATH: src
+        run: rye run pytest
+
+      - name: Execute Behavioral Specifications (behave)
+        env:
+          PYTHONPATH: src
+        run: rye run behave
+
