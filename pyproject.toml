@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "django-octo-seo"
-version = "0.1.5"
+version = "0.1.6"
 description = "Django-based technical SEO architecture for large-scale URL indexing and single-query metadata rendering."
 readme = "README.md"
 requires-python = ">=3.12"

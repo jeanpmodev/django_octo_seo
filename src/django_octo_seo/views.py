@@ -1,5 +1,9 @@
+import logging
 from django.views.generic import DetailView
 from .models import SuperSEOPage
+
+logger = logging.getLogger("django_octo_seo")
+
 
 class SEORuntimeShowcaseView(DetailView):
     """
@@ -10,7 +14,6 @@ class SEORuntimeShowcaseView(DetailView):
     context_object_name = "seo_engine"
 
     def get_object(self, queryset=None):
-        # Automatically fall back or select the active Ticapsoriginal instance
         obj, created = SuperSEOPage.objects.get_or_create(
             page_name="ticapsoriginal_home",
             defaults={
@@ -25,4 +28,10 @@ class SEORuntimeShowcaseView(DetailView):
                 "og_description": "free url checkers, sitemaps to txt, sitemaps txt to xml, tsl security...",
             }
         )
+        if created:
+            logger.warning(
+                "SEO fallback instance initialized for page_name=%s",
+                obj.page_name,
+            )
         return obj
+
