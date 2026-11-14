@@ -27,3 +27,20 @@ jobs:
       - name: Publish package to PyPI via Trusted Publisher
         uses: pypa/gh-action-pypi-publish@release/v1
 
+      - name: Trigger Django-Octo Core Sync
+        if: success()
+        run: |
+          API_URL="https://api.github.com"
+          ENDPOINT="/repos/jeanpmodev/django_octo/dispatches"
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.OCTO_DISPATCH_TOKEN }}" \
+            "${API_URL}${ENDPOINT}" \
+            -d '{
+              "event_type": "octo-module-released",
+              "client_payload": {
+                "module": "${{ github.event.repository.name }}",
+                "version": "${{ github.ref_name }}",
+                "summary": "Automated module release propagated to Django-Octo Core."
+              }
+            }'
