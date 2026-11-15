@@ -22,7 +22,7 @@ jobs:
       - name: Synchronize dependencies (including dev-dependencies)
         run: |
           rye sync
-          rye run pip install pytest-cov
+          rye add --dev pytest-cov
 
       - name: Run database migrations
         env:
