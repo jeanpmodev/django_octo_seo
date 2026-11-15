@@ -15,6 +15,7 @@
 [![Snyk Vulnerabilities](https://img.shields.io/badge/Snyk%20Vulnerabilities-0%20known-brightgreen?logo=snyk&logoColor=white)](https://security.snyk.io/package/pip/django-octo-seo)
 [![Security Audit](https://github.com/jeanpmodev/django_octo_seo/actions/workflows/security.yml/badge.svg)](https://github.com/jeanpmodev/django_octo_seo/actions/workflows/security.yml)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/jeanpmodev/django_octo_seo/badge)](https://scorecard.dev/viewer/?uri=github.com/jeanpmodev/django_octo_seo)
+[![Socket Badge](https://badge.socket.dev/pypi/package/django-octo-seo/0.1.6?artifact_id=tar-gz)](https://badge.socket.dev/pypi/package/django-octo-seo/0.1.6?artifact_id=tar-gz)
 
 **django_octo_seo** is a production-grade, high-performance SEO injection engine designed for scalable web infrastructures. It serves as a core decoupled module under the **Django-Octo** structural framework ecosystem.
 
