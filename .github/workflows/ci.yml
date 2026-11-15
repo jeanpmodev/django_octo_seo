@@ -20,7 +20,9 @@ jobs:
           enable-cache: true
 
       - name: Synchronize dependencies (including dev-dependencies)
-        run: rye sync
+        run: |
+          rye sync
+          rye run pip install pytest-cov
 
       - name: Run database migrations
         env:
