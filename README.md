@@ -1,6 +1,7 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/jeanpmodev/jeanpmodev/main/assets/django-octo-seo.jpg" alt="Django-Octo-SEO" width="100%" />
 </p>
+
 # django_octo_seo
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
