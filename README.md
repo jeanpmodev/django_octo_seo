@@ -28,7 +28,10 @@ This module guarantees strict database-to-head tag integrity, mapping dynamic SE
 
 ---
 
-![](https://github.com/jeanpmodev/assets/django-octo-seo-demo.gif)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jeanpmodev/jeanpmodev/main/assets/django-octo-seo-demo.gif" alt="Demonstração Django Octo SEO" width="600">
+</p>
+
 
 ## 🔑 Key Architectural Features
 
