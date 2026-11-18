@@ -28,6 +28,8 @@ This module guarantees strict database-to-head tag integrity, mapping dynamic SE
 
 ---
 
+![](https://github.com/jeanpmodev/assets/django-octo-seo-demo.gif)
+
 ## 🔑 Key Architectural Features
 
 - **Unified Bot Controller:** Replaced fragmented crawler instructions (`Googlebot`, `Bingbot`, `Yandex`, `Baidu`) with an optimized single-pass meta-tag runtime execution.
