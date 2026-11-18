@@ -1,207 +1,373 @@
 <!DOCTYPE html>
 <html lang="{{ seo_engine.language_code|default:'en' }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- ID 01: Global Security Core -->
-    <meta http-equiv="X-Frame-Options" content="{{ seo_engine.x_frame_options|default:'deny' }}">
-
-    <!-- ID 02 to 05: Semantic Web Core -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Frame-Options" content="{{ seo_engine.x_frame_options|default:'DENY' }}">
     <title>{{ seo_engine.title }}</title>
     <meta name="description" content="{{ seo_engine.description }}">
     <meta name="keywords" content="{{ seo_engine.keywords }}">
     <meta name="author" content="{{ seo_engine.author }}">
-    
-    <link rel="canonical" href="{{ seo_engine.canonical_url }}"/>
-    
-    <!-- ID 06: Visual Asset Micro-format -->
-    <meta name="thumbnail" content="{{ request.scheme }}://{{ request.get_host }}/static/images/{{ seo_engine.thumbnail_image }}"/>
-
-    <!-- ID 04: Unified Multi-Crawler Fallback Optimization -->
-    <meta name="robots" content="{{ seo_engine.robots_directives|default:'index, follow' }}">
-
-    <!-- ID 07: Open Graph Protocol (Social Graph) -->
-    <meta property="og:type" content="{{ seo_engine.og_type }}">
-    <meta property="og:title" content="{{ seo_engine.title }}">
-    <meta property="og:description" content="{{ seo_engine.description }}">
-    <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}/static/images/{{ seo_engine.og_image }}">
-    <meta property="og:site_name" content="ticapsoriginal.com"/>
-
-    <!-- ID 07: Twitter Card Extension -->
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:site" content="{{ seo_engine.twitter_site }}"/>
-    <meta name="twitter:creator" content="{{ seo_engine.twitter_creator }}"/>
-    <meta name="twitter:title" content="{{ seo_engine.title }}"/>
-    <meta name="twitter:description" content="{{ seo_engine.description }}"/>
-    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}/static/images/{{ seo_engine.og_image }}"/>
-
-    <!-- ID 08: Schema.org JSON-LD Structured Data Array -->
+    <meta name="robots" content="{{ seo_engine.robots_directives }}">
+    <link rel="canonical" href="{{ seo_engine.canonical_url }}">
+    {% if seo_engine.thumbnail_image %}<meta name="thumbnail" content="{{ seo_engine.thumbnail_image }}">{% endif %}
+    <meta property="og:type" content="{{ seo_engine.og_type|default:'website' }}">
+    <meta property="og:title" content="{{ seo_engine.og_title|default:seo_engine.title }}">
+    <meta property="og:description" content="{{ seo_engine.og_description|default:seo_engine.description }}">
+    <meta property="og:url" content="{{ seo_engine.canonical_url }}">
+    {% if seo_engine.og_image %}<meta property="og:image" content="{{ seo_engine.og_image }}">{% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+    {% if seo_engine.twitter_site %}<meta name="twitter:site" content="{{ seo_engine.twitter_site }}">{% endif %}
+    {% if seo_engine.twitter_creator %}<meta name="twitter:creator" content="{{ seo_engine.twitter_creator }}">{% endif %}
+    <meta name="twitter:title" content="{{ seo_engine.og_title|default:seo_engine.title }}">
+    <meta name="twitter:description" content="{{ seo_engine.og_description|default:seo_engine.description }}">
+    {% if seo_engine.og_image %}<meta name="twitter:image" content="{{ seo_engine.og_image }}">{% endif %}
     <script type="application/ld+json">
-    [
-      {
+    {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "ticapsoriginal",
-        "url": "{{ seo_engine.canonical_url }}",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "{{ seo_engine.canonical_url }}search/?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "{{ seo_engine.json_ld_schema_type|default:'BlogPosting' }}",
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": "{{ seo_engine.canonical_url }}"
-        },
-        "headline": "{{ seo_engine.headline_structured }}",
-        "description": "{{ seo_engine.description }}",
-        "image": "{{ request.scheme }}://{{ request.get_host }}/static/images/{{ seo_engine.thumbnail_image }}",  
+        "@type": "{{ seo_engine.json_ld_schema_type|default:'SoftwareApplication' }}",
+        "headline": "{{ seo_engine.headline_structured|default:seo_engine.title|escapejs }}",
+        "name": "{{ seo_engine.title|escapejs }}",
+        "description": "{{ seo_engine.description|escapejs }}",
+        "url": "{{ seo_engine.canonical_url|escapejs }}",
+        "inLanguage": "{{ seo_engine.language_code|default:'en'|escapejs }}",
+        {% if seo_engine.og_image %}"image": "{{ seo_engine.og_image|escapejs }}",{% endif %}
+        "author": { "@type": "Organization", "name": "{{ seo_engine.author|escapejs }}" },
         "datePublished": "{{ seo_engine.date_published|date:'c' }}",
-        "dateModified": "{{ seo_engine.date_modified|date:'c' }}",
-        "author": {
-          "@type": "Person",
-          "name": "Jean",
-          "url": "https://linkedin.com"
-        },  
-        "publisher": {
-          "@type": "Organization",
-          "name": "ticapsoriginal.com",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "{{ request.scheme }}://{{ request.get_host }}/static/images/{{ seo_engine.thumbnail_image }}"
-          }
-        }
-      }
-    ]
+        "dateModified": "{{ seo_engine.date_modified|date:'c' }}"
+    }
     </script>
-
-    <!-- Tailwind CSS Script CDN -->
-    <script src="https://tailwindcss.com"></script>
+    <style>
+        :root { --bg:#f8fafc; --surface:#ffffff; --ink:#0f172a; --muted:#475569; --border:#e2e8f0; --accent:#10b981; --accent-dark:#059669; --accent-soft:#ecfdf5; --dark:#0b1120; }
+        * { box-sizing:border-box; margin:0; padding:0; }
+        body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; }
+        .container { max-width:1160px; margin:0 auto; padding:0 24px; }
+        header.topbar { background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:50; }
+        .topbar-inner { display:flex; align-items:center; justify-content:space-between; height:72px; }
+        .brand { display:flex; align-items:center; gap:12px; font-weight:800; font-size:18px; color:var(--ink); text-decoration:none; }
+        .brand-badge { background:var(--accent-soft); color:var(--accent-dark); border:1px solid #a7f3d0; font-size:12px; font-weight:700; padding:3px 10px; border-radius:999px; }
+        .nav-actions { display:flex; gap:12px; }
+        .btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 20px; border-radius:10px; font-weight:600; font-size:14px; text-decoration:none; transition:all 0.15s ease; }
+        .btn-outline { border:1px solid var(--border); color:var(--ink); background:var(--surface); }
+        .btn-outline:hover { border-color:#cbd5e1; background:#f1f5f9; }
+        .btn-primary { background:var(--accent); color:#fff; }
+        .btn-primary:hover { background:var(--accent-dark); }
+        section.hero { padding:72px 0 56px; background:linear-gradient(180deg,#fff 0%,#f8fafc 100%); border-bottom:1px solid var(--border); }
+        .hero-grid { display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:center; }
+        .pill { display:inline-block; background:var(--accent-soft); color:var(--accent-dark); font-weight:700; font-size:13px; padding:6px 14px; border-radius:999px; margin-bottom:20px; }
+        .hero h1 { font-size:clamp(34px,4.5vw,52px); font-weight:800; line-height:1.1; letter-spacing:-0.03em; margin-bottom:20px; }
+        .hero p.lead { font-size:19px; color:var(--muted); margin-bottom:32px; }
+        .hero-meta { display:flex; flex-wrap:wrap; gap:24px; padding-top:24px; border-top:1px solid var(--border); }
+        .meta-item span { display:block; font-size:11px; text-transform:uppercase; color:var(--muted); font-weight:700; }
+        .hero-visual { background:var(--dark); border-radius:20px; padding:16px; box-shadow:0 20px 40px -15px rgba(15,23,42,0.2); }
+        .hero-visual img { width:100%; height:240px; object-fit:cover; border-radius:12px; display:block; margin-bottom:14px; }
+        .visual-caption { display:flex; justify-content:space-between; color:#cbd5e1; font-size:13px; padding:0 6px; }
+        .visual-caption code { color:#34d399; font-family:monospace; }
+        section.section { padding:68px 0; }
+        .section-header { max-width:720px; margin-bottom:40px; }
+        .section-header span { display:block; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent-dark); margin-bottom:8px; }
+        .section-header h2 { font-size:clamp(26px,3.5vw,38px); font-weight:800; line-height:1.15; margin-bottom:12px; }
+        .steps-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+        .card { min-width:0; max-width:100%; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:28px; }
+        .step-num { width:38px; height:38px; border-radius:10px; background:var(--accent-soft); color:var(--accent-dark); font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+        .preview-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+        .serp-box, .social-box, .matrix-wrap { background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+        .matrix-wrap { width:100%; overflow-x:auto; }
+        .serp-box { padding:24px; }
+        .serp-title { font-size:20px; color:#1a0dab; font-weight:500; text-decoration:none; display:block; margin:6px 0; }
+        .social-box img { width:100%; height:180px; object-fit:cover; display:block; background:var(--dark); }
+        .social-body { padding:20px; background:#f8fafc; }
+        table { width:100%; border-collapse:collapse; text-align:left; }
+        th { background:#f1f5f9; padding:14px 18px; font-size:12px; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border); }
+        td { padding:16px 18px; border-bottom:1px solid var(--border); font-size:14px; vertical-align:top; }
+        tr:last-child td { border-bottom:none; }
+        .tag-code { background:#f1f5f9; padding:3px 8px; border-radius:6px; font-size:12px; font-family:monospace; }
+        .json-block { max-width:100%; width:100%; background:var(--dark); color:#38bdf8; padding:24px; border-radius:16px; font-family:monospace; font-size:13px; line-height:1.6; overflow-x:auto; margin-top:24px; }
+        footer { background:var(--surface); border-top:1px solid var(--border); padding:36px 0; text-align:center; color:var(--muted); font-size:14px; }
+        @media (max-width:900px) { .hero-grid,.steps-grid,.preview-grid { grid-template-columns:1fr; } }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
-    
-    <!-- Hero Header Component -->
-    <header class="bg-indigo-900 text-white py-12 px-6 shadow-md">
-        <div class="max-w-6xl mx-auto">
-            <h1 class="text-4xl font-extrabold tracking-tight">django_octo_seo</h1>
-            <p class="text-indigo-200 text-lg mt-2 font-medium">Enterprise-grade database-to-head metadata mapping engine</p>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a href="/" class="brand">
+                <span>DJANGO-OCTO SEO</span>
+                <span class="brand-badge">Single-Query Runtime</span>
+            </a>
+            <div class="nav-actions">
+                <a href="{{ seo_engine.canonical_url }}" target="_blank" rel="noopener" class="btn btn-outline">Canonical Target</a>
+                <a href="/admin/django_octo_seo/superseopage/" class="btn btn-primary">Edit in Django Admin</a>
+            </div>
         </div>
     </header>
 
-    <!-- Main Dynamic Interface -->
-    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-10">
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8">
-            
-            <!-- Metadata System Context Header -->
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-100 pb-6 gap-4">
-                <div>
-                    <h2 class="text-xl font-bold text-slate-900">📋 SEO Dynamic Coverage Matrix</h2>
-                    <p class="text-slate-500 text-sm mt-1">Live telemetry metrics synchronized straight from the <code>db.sqlite3</code> repository layer.</p>
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <div class="pill">Active Profile: {{ seo_engine.page_name }}</div>
+                <h1>{{ seo_engine.title }}</h1>
+                <p class="lead">{{ seo_engine.description }}</p>
+                <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:32px;">
+                    <a href="#audit-matrix" class="btn btn-primary">Inspect 8-Layer Matrix</a>
+                    <a href="/admin/django_octo_seo/superseopage/{{ seo_engine.pk }}/change/" class="btn btn-outline">Modify This Page</a>
                 </div>
-                <div>
-                    <a href="https://ticapsoriginal.com" target="_blank" class="inline-flex items-center justify-center px-4 py-2 border border-indigo-600 rounded-lg text-sm font-semibold text-indigo-600 hover:bg-indigo-50 transition-colors shadow-sm">
-                        Ecosystem Docs
-                    </a>
+                <div class="hero-meta">
+                    <div class="meta-item"><span>Robots Policy</span><strong>{{ seo_engine.robots_directives }}</strong></div>
+                    <div class="meta-item"><span>Schema Type</span><strong>{{ seo_engine.json_ld_schema_type }}</strong></div>
+                    <div class="meta-item"><span>Language</span><strong>{{ seo_engine.language_code|upper }}</strong></div>
+                    <div class="meta-item"><span>Last Updated</span><strong>{{ seo_engine.date_modified|date:"M d, Y H:i" }}</strong></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="{{ seo_engine.og_image|default:'https://raw.githubusercontent.com/jeanpmodev/jeanpmodev/main/assets/django-octo.jpg' }}" alt="{{ seo_engine.title }}">
+                <div class="visual-caption">
+                    <span>Document <code>&lt;head&gt;</code> &amp; JSON-LD</span>
+                    <code>Status: 200 OK · 1 Query</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span>How It Works</span>
+                <h2>From Django Admin to Validated HTML5 Metadata in One Query</h2>
+                <p style="color:var(--muted);">Every field configured in the administrative panel is compiled directly into the document header below.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="card">
+                    <div class="step-num">01</div>
+                    <h3>Admin Governance</h3>
+                    <p style="color:var(--muted); margin-top:8px;">Editors configure title, description, canonical URL, social banners, and crawler rules with live character limits.</p>
+                </div>
+                <div class="card">
+                    <div class="step-num">02</div>
+                    <h3>Single-Query Fetch</h3>
+                    <p style="color:var(--muted); margin-top:8px;">The runtime view resolves <strong>{{ seo_engine.page_name }}</strong> in a single database lookup with zero N+1 overhead.</p>
+                </div>
+                <div class="card">
+                    <div class="step-num">03</div>
+                    <h3>Live &lt;head&gt; Injection</h3>
+                    <p style="color:var(--muted); margin-top:8px;">All 8 semantic, social, security, and Schema.org JSON-LD tags are rendered directly into the page source code.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background:#fff; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+        <div class="container">
+            <div class="section-header">
+                <span>Visual Rendering</span>
+                <h2>How Search Engines &amp; Social Networks See This URL</h2>
+            </div>
+            <div class="preview-grid">
+                <div class="serp-box">
+                    <div style="font-size:12px; color:#202124;">{{ seo_engine.canonical_url }}</div>
+                    <a href="{{ seo_engine.canonical_url }}" target="_blank" rel="noopener" class="serp-title">{{ seo_engine.title }}</a>
+                    <div style="font-size:14px; color:#4d5156;">{{ seo_engine.description }}</div>
+                </div>
+                <div class="social-box">
+                    {% if seo_engine.og_image %}<img src="{{ seo_engine.og_image }}" alt="{{ seo_engine.og_title|default:seo_engine.title }}">{% endif %}
+                    <div class="social-body">
+                        <div style="font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase;">{{ seo_engine.og_type|default:"website" }} · {{ seo_engine.twitter_site|default:"@ticapsoriginal" }}</div>
+                        <div style="font-size:17px; font-weight:700; margin:4px 0;">{{ seo_engine.og_title|default:seo_engine.title }}</div>
+                        <div style="font-size:14px; color:var(--muted);">{{ seo_engine.og_description|default:seo_engine.description }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="audit-matrix" class="section">
+        <div class="container">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:40px;">
+                <div class="section-header" style="margin-bottom:0;">
+                    <span>Live SEO Manual &amp; Code Generator</span>
+                    <h2>Copy-Ready &lt;head&gt; Snippets for Your Project or GitHub Page</h2>
+                    <p style="color:var(--muted);">This page acts as a live technical manual. Copy any validated block below and paste it inside your site's <code>&lt;head&gt;</code> tag.</p>
+                </div>
+                <div id="audit-global-badge" style="display:inline-flex; align-items:center; gap:10px; background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; padding:10px 18px; border-radius:999px; font-weight:700; font-size:13px;">
+                    <span id="audit-global-dot" style="width:10px; height:10px; border-radius:50%; background:#10b981; display:inline-block;"></span>
+                    <span id="audit-global-text">Validating 8 Layers...</span>
                 </div>
             </div>
 
-            <!-- Responsive Architecture Grid Table -->
-            <div class="overflow-x-auto mt-6">
-                <table class="min-w-full divide-y divide-slate-200 text-left text-sm">
-                    <thead class="bg-slate-50 text-slate-600 uppercase font-semibold text-xs tracking-wider">
-                        <tr>
-                            <th scope="col" class="px-4 py-4 w-24 text-center">Metric ID</th>
-                            <th scope="col" class="px-6 py-4">Target Architecture Component</th>
-                            <th scope="col" class="px-6 py-4">Django Model Mapping</th>
-                            <th scope="col" class="px-6 py-4">Active Runtime Dataset</th>
-                        </tr>
+            <div class="matrix-wrap" style="margin-bottom:48px;">
+                <table>
+                    <thead>
+                        <tr><th>Layer</th><th>Component</th><th>HTML Tag / Header</th><th>Active Value from Admin</th><th>Audit Check</th></tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100 text-slate-700">
-                        <!-- ID 01 -->
-                        <tr class="hover:bg-slate-50/70 transition-colors">
-                            <td class="px-4 py-4 text-center">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-800">01</span>
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-slate-900">Security Frame Controller</td>
-                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">x_frame_options</td>
-                            <td class="px-6 py-4"><code class="bg-slate-100 px-2 py-1 rounded text-xs text-slate-600 font-mono">{{ seo_engine.x_frame_options }}</code></td>
-                        </tr>
-                        <!-- ID 02 -->
-                        <tr class="hover:bg-slate-50/70 transition-colors">
-                            <td class="px-4 py-4 text-center">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">02</span>
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-slate-900">Semantic Document Title</td>
-                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">title</td>
-                            <td class="px-6 py-4 class-truncated font-medium text-slate-900">"{{ seo_engine.title }}"</td>
-                        </tr>
-                        <!-- ID 03 -->
-                        <tr class="hover:bg-slate-50/70 transition-colors">
-                            <td class="px-4 py-4 text-center">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">03</span>
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-slate-900">SERP Snippet Description</td>
-                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">description</td>
-                            <td class="px-6 py-4 text-slate-500 italic max-w-xs md:max-w-md truncate">{{ seo_engine.description }}</td>
-                        </tr>
-                        <!-- ID 04 -->
-                        <tr class="hover:bg-slate-50/70 transition-colors">
-                            <td class="px-4 py-4 text-center">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">04</span>
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-slate-900">Global Crawler Directives</td>
-                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">robots_directives</td>
-                            <td class="px-6 py-4"><span class="bg-slate-800 text-slate-100 text-xs font-mono px-2 py-1 rounded">{{ seo_engine.robots_directives }}</span></td>
-                        </tr>
-                        <!-- ID 05 -->
-                        <tr class="hover:bg-slate-50/70 transition-colors">
-                            <td class="px-4 py-4 text-center">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">05</span>
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-slate-900">Canonical Integrity URL</td>
-                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">canonical_url</td>
-                            <td class="px-6 py-4"><a href="{{ seo_engine.canonical_url }}" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-mono text-xs underline">{{ seo_engine.canonical_url }}</a></td>
-                            </tr>
-                        <!-- Metric 06: Micro-Format Asset -->
-                        <tr class="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
-                            <td class="px-6 py-4"><span class="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-800 ring-1 ring-inset ring-amber-600/20">06</span></td>
-                            <td class="px-6 py-4 font-semibold text-slate-900">Micro-Format Asset</td>
-                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">thumbnail_image</td>
-                            <td class="px-6 py-4 text-slate-600 font-mono text-xs">{{ seo_engine.thumbnail_image }}</td>
-                        </tr>
-                        <!-- Metric 07: Social Semantic Graph (OG) -->
-                        <tr class="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
-                            <td class="px-6 py-4"><span class="inline-flex items-center rounded-md bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-800 ring-1 ring-inset ring-emerald-600/20">07</span></td>
-                            <td class="px-6 py-4 font-semibold text-slate-900">Social Semantic Graph (OG)</td>
-                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">og_title / og_image</td>
-                            <td class="px-6 py-4 text-slate-600">Mapped with Open Graph protocol layer</td>
-                        </tr>
-                        <!-- Metric 08: Automated Schema Datasets -->
-                        <tr class="hover:bg-slate-50/50 transition-colors">
-                            <td class="px-6 py-4"><span class="inline-flex items-center rounded-md bg-sky-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-sky-600/20">08</span></td>
-                            <td class="px-6 py-4 font-semibold text-slate-900">Automated Schema Datasets</td>
-                            <td class="px-6 py-4 font-mono text-xs text-indigo-600">json_ld_schema_type</td>
-                            <td class="px-6 py-4 text-slate-600">Injected via <span class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded text-slate-800">{{ seo_engine.json_ld_schema_type }}</span> context node</td>
-                        </tr>
+                    <tbody>
+                        <tr><td><strong>01</strong></td><td>Security Layer</td><td><span class="tag-code">X-Frame-Options</span></td><td>{{ seo_engine.x_frame_options }}</td><td id="chk-01"></td></tr>
+                        <tr><td><strong>02</strong></td><td>Semantic Web Core</td><td><span class="tag-code">&lt;title&gt;</span></td><td>{{ seo_engine.title }}</td><td id="chk-02"></td></tr>
+                        <tr><td><strong>03</strong></td><td>Indexer Snippet</td><td><span class="tag-code">meta[name="description"]</span></td><td>{{ seo_engine.description }}</td><td id="chk-03"></td></tr>
+                        <tr><td><strong>04</strong></td><td>Multi-Crawler Policy</td><td><span class="tag-code">meta[name="robots"]</span></td><td>{{ seo_engine.robots_directives }}</td><td id="chk-04"></td></tr>
+                        <tr><td><strong>05</strong></td><td>Link Authority</td><td><span class="tag-code">link[rel="canonical"]</span></td><td>{{ seo_engine.canonical_url }}</td><td id="chk-05"></td></tr>
+                        <tr><td><strong>06</strong></td><td>Micro-Format Asset</td><td><span class="tag-code">meta[name="thumbnail"]</span></td><td>{{ seo_engine.thumbnail_image }}</td><td id="chk-06"></td></tr>
+                        <tr><td><strong>07</strong></td><td>Social Semantic Graph</td><td><span class="tag-code">og:* &amp; twitter:*</span></td><td>{{ seo_engine.og_title }} ({{ seo_engine.og_type }}) · {{ seo_engine.twitter_site }}</td><td id="chk-07"></td></tr>
+                        <tr><td><strong>08</strong></td><td>Structured Dataset</td><td><span class="tag-code">application/ld+json</span></td><td>@type: {{ seo_engine.json_ld_schema_type }} — "{{ seo_engine.headline_structured|default:seo_engine.title }}"</td><td id="chk-08"></td></tr>
                     </tbody>
                 </table>
             </div>
-        </div>
 
-        <!-- Footer Meta Info -->
-        <footer class="mt-12 text-center border-t border-slate-100 pt-6">
-            <p class="text-xs text-slate-400">
-                Managed by <strong class="text-slate-600">Rye Python Environment</strong>. Distributed under the permissive <strong class="text-slate-600">MIT License</strong>.
-            </p>
-            <p class="text-xs text-indigo-500 mt-1">
-                Powered by the <a href="https://ticapsoriginal.com" target="_blank" class="hover:text-indigo-700 underline font-medium">ticapsoriginal.com</a> ecosystem telemetry.
-            </p>
-        </footer>
-    </main>
+            <div style="display:grid; gap:32px;">
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+                        <div>
+                            <span style="font-size:12px; font-weight:800; color:var(--accent-dark); text-transform:uppercase;">Block 01 · Search &amp; Open Graph (WhatsApp, LinkedIn, Facebook)</span>
+                            <h3 style="margin-top:4px;">Core SEO &amp; Open Graph Meta Tags</h3>
+                        </div>
+                        <button type="button" onclick="copyCode('code-og', this)" class="btn btn-primary" style="border:none; cursor:pointer;">Copy Open Graph HTML</button>
+                    </div>
+                    <p style="color:var(--muted); margin-bottom:16px;">Controls how Google indexes your page and how rich preview cards appear when shared on WhatsApp, LinkedIn, Slack, or Discord.</p>
+                    <pre id="code-og" class="json-block" style="margin-top:0;">&lt;title&gt;{{ seo_engine.title }}&lt;/title&gt;
+&lt;meta name="description" content="{{ seo_engine.description }}"&gt;
+&lt;meta name="keywords" content="{{ seo_engine.keywords }}"&gt;
+&lt;meta name="author" content="{{ seo_engine.author }}"&gt;
+&lt;meta name="robots" content="{{ seo_engine.robots_directives }}"&gt;
+&lt;link rel="canonical" href="{{ seo_engine.canonical_url }}"&gt;
+&lt;meta property="og:type" content="{{ seo_engine.og_type|default:'website' }}"&gt;
+&lt;meta property="og:title" content="{{ seo_engine.og_title|default:seo_engine.title }}"&gt;
+&lt;meta property="og:description" content="{{ seo_engine.og_description|default:seo_engine.description }}"&gt;
+&lt;meta property="og:url" content="{{ seo_engine.canonical_url }}"&gt;
+&lt;meta property="og:image" content="{{ seo_engine.og_image }}"&gt;</pre>
+                </div>
+
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+                        <div>
+                            <span style="font-size:12px; font-weight:800; color:var(--accent-dark); text-transform:uppercase;">Block 02 · X / Twitter Cards</span>
+                            <h3 style="margin-top:4px;">Twitter Summary Large Image</h3>
+                        </div>
+                        <button type="button" onclick="copyCode('code-tw', this)" class="btn btn-primary" style="border:none; cursor:pointer;">Copy Twitter HTML</button>
+                    </div>
+                    <p style="color:var(--muted); margin-bottom:16px;">Forces X (Twitter) to render a full-width banner preview card instead of a small square thumbnail, attributing credit to your handle.</p>
+                    <pre id="code-tw" class="json-block" style="margin-top:0;">&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:site" content="{{ seo_engine.twitter_site }}"&gt;
+&lt;meta name="twitter:creator" content="{{ seo_engine.twitter_creator }}"&gt;
+&lt;meta name="twitter:title" content="{{ seo_engine.og_title|default:seo_engine.title }}"&gt;
+&lt;meta name="twitter:description" content="{{ seo_engine.og_description|default:seo_engine.description }}"&gt;
+&lt;meta name="twitter:image" content="{{ seo_engine.og_image }}"&gt;</pre>
+                </div>
+
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+                        <div>
+                            <span style="font-size:12px; font-weight:800; color:var(--accent-dark); text-transform:uppercase;">Block 03 · Schema.org JSON-LD</span>
+                            <h3 style="margin-top:4px;">Structured Dataset Script</h3>
+                        </div>
+                        <button type="button" onclick="copyCode('code-jsonld', this)" class="btn btn-primary" style="border:none; cursor:pointer;">Copy JSON-LD Script</button>
+                    </div>
+                    <p style="color:var(--muted); margin-bottom:16px;">Machine-readable graph for Google Search and AI crawlers. Explains what entity this page represents (<strong>{{ seo_engine.json_ld_schema_type }}</strong>), who built it, and when it was updated.</p>
+                    <pre id="code-jsonld" class="json-block" style="margin-top:0;">&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "{{ seo_engine.json_ld_schema_type|default:'SoftwareApplication' }}",
+  "headline": "{{ seo_engine.headline_structured|default:seo_engine.title }}",
+  "name": "{{ seo_engine.title }}",
+  "url": "{{ seo_engine.canonical_url }}",
+  "description": "{{ seo_engine.description }}",
+  "inLanguage": "{{ seo_engine.language_code }}",
+  "image": "{{ seo_engine.og_image }}",
+  "author": {
+    "@type": "Organization",
+    "name": "{{ seo_engine.author }}"
+  },
+  "datePublished": "{{ seo_engine.date_published|date:'c' }}",
+  "dateModified": "{{ seo_engine.date_modified|date:'c' }}"
+}
+&lt;/script&gt;</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <strong>Django-Octo SEO</strong> · Powered by {{ seo_engine.author|default:"Ticapsoriginal" }} · Page Identifier: <code>{{ seo_engine.page_name }}</code>
+        </div>
+    </footer>
+
+    <script>
+        function copyCode(elementId, btn) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(function () {
+                const original = btn.textContent;
+                btn.textContent = "Copied!";
+                btn.style.background = "#059669";
+                setTimeout(function () {
+                    btn.textContent = original;
+                    btn.style.background = "";
+                }, 1800);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let passed = 0;
+            const total = 8;
+
+            function setBadge(id, ok, msg) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                if (ok) passed++;
+                const bg = ok ? "#dcfce7" : "#fef3c7";
+                const fg = ok ? "#166534" : "#92400e";
+                const icon = ok ? "✔" : "⚠";
+                el.innerHTML = '<span style="display:inline-flex;align-items:center;gap:6px;background:' + bg + ';color:' + fg + ';padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;">' + icon + ' ' + msg + '</span>';
+            }
+
+            const xFrame = "{{ seo_engine.x_frame_options|escapejs }}".toUpperCase();
+            setBadge("chk-01", xFrame === "DENY" || xFrame === "SAMEORIGIN", xFrame ? "Protected (" + xFrame + ")" : "Missing Header");
+
+            const titleVal = "{{ seo_engine.title|escapejs }}";
+            setBadge("chk-02", titleVal.length >= 30 && titleVal.length <= 60, titleVal.length + "/60 chars");
+
+            const descVal = "{{ seo_engine.description|escapejs }}";
+            setBadge("chk-03", descVal.length >= 100 && descVal.length <= 160, descVal.length + "/160 chars");
+
+            const robotsVal = "{{ seo_engine.robots_directives|escapejs }}";
+            setBadge("chk-04", robotsVal.length > 0, robotsVal.includes("noindex") ? "Noindex Active" : "Indexable");
+
+            const canonVal = "{{ seo_engine.canonical_url|escapejs }}";
+            setBadge("chk-05", canonVal.startsWith("https://"), canonVal.startsWith("https://") ? "HTTPS Canonical" : "Needs HTTPS URL");
+
+            const thumbVal = "{{ seo_engine.thumbnail_image|escapejs }}";
+            setBadge("chk-06", thumbVal.startsWith("http"), thumbVal ? "Asset Linked" : "Missing Thumbnail");
+
+            const ogImgVal = "{{ seo_engine.og_image|escapejs }}";
+            const ogTitleVal = "{{ seo_engine.og_title|escapejs }}";
+            setBadge("chk-07", Boolean(ogImgVal && ogTitleVal), (ogImgVal && ogTitleVal) ? "Social Ready" : "Incomplete OG");
+
+            let jsonOk = false;
+            try {
+                const rawJson = document.querySelector('script[type="application/ld+json"]').textContent;
+                const parsed = JSON.parse(rawJson);
+                jsonOk = Boolean(parsed["@context"] && parsed["@type"]);
+            } catch (e) {
+                jsonOk = false;
+            }
+            setBadge("chk-08", jsonOk, jsonOk ? "Valid JSON-LD" : "JSON Syntax Error");
+
+            const globalBadge = document.getElementById("audit-global-badge");
+            const globalDot = document.getElementById("audit-global-dot");
+            const globalText = document.getElementById("audit-global-text");
+            if (globalBadge && globalDot && globalText) {
+                if (passed === total) {
+                    globalBadge.style.background = "#ecfdf5";
+                    globalBadge.style.borderColor = "#a7f3d0";
+                    globalBadge.style.color = "#065f46";
+                    globalDot.style.background = "#10b981";
+                    globalText.textContent = "All " + total + "/" + total + " Layers Validated";
+                } else {
+                    globalBadge.style.background = "#fffbeb";
+                    globalBadge.style.borderColor = "#fde68a";
+                    globalBadge.style.color = "#92400e";
+                    globalDot.style.background = "#f59e0b";
+                    globalText.textContent = passed + "/" + total + " Layers Passed · Review Warnings";
+                }
+            }
+        });
+    </script>
 </body>
 </html>
