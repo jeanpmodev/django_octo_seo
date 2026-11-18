@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/jeanpmodev/jeanpmodev/main/assets/django-octo-seo.jpg" alt="Django-Octo-SEO" width="100%" />
 </p>
 
-# django_octo_seo pypi library package
+# django-octo-seo 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue)](https://python.org)
