@@ -22,6 +22,7 @@
 [![Socket Badge](https://badge.socket.dev/pypi/package/django-octo-seo/0.1.6?artifact_id=tar-gz)](https://badge.socket.dev/pypi/package/django-octo-seo/0.1.6?artifact_id=tar-gz)
 [![codecov](https://codecov.io/gh/jeanpmodev/django_octo_seo/graph/badge.svg?token=FO3B4DS2RH)](https://codecov.io/gh/jeanpmodev/django_octo_seo)
 [![Documentation Status](https://readthedocs.org/projects/django-octo/badge/?version=latest)](https://django-octo.readthedocs.io/en/latest/seo/)
+[![PyPkgScore](https://pypkgscore.onrender.com/badge/django_octo_seo.svg)](https://pypkgscore.onrender.com/en/p/django_octo_seo/)
 
 **django_octo_seo** is a production-grade, high-performance SEO injection engine designed for scalable web infrastructures. It serves as a core decoupled module under the **Django-Octo** structural framework ecosystem.
 
