@@ -27,7 +27,9 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/jeanpmodev/django_octo_seo"
+Documentation = "https://django-octo.readthedocs.io/en/latest/seo/"
 Repository = "https://github.com/jeanpmodev/django_octo_seo"
+Issues = "https://github.com/jeanpmodev/django_octo_seo/issues"
 
 [tool.rye]
 managed = true
