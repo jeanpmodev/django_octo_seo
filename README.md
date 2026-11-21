@@ -22,11 +22,10 @@
 [![Socket Badge](https://badge.socket.dev/pypi/package/django-octo-seo/0.1.6?artifact_id=tar-gz)](https://badge.socket.dev/pypi/package/django-octo-seo/0.1.6?artifact_id=tar-gz)
 [![codecov](https://codecov.io/gh/jeanpmodev/django_octo_seo/graph/badge.svg?token=FO3B4DS2RH)](https://codecov.io/gh/jeanpmodev/django_octo_seo)
 [![Documentation Status](https://readthedocs.org/projects/django-octo/badge/?version=latest)](https://django-octo.readthedocs.io/en/latest/seo/)
-[![PyPkgScore](https://pypkgscore.onrender.com/badge/django_octo_seo.svg)](https://pypkgscore.onrender.com/en/p/django_octo_seo/)
+[![PyPkgScore](https://pypkgscore.onrender.com/badge/django_octo_seo.svg)](https://pypkgscore.onrender.com/en/p/django-octo-seo/)
 
-**django_octo_seo** is a production-grade, high-performance SEO injection engine designed for scalable web infrastructures. It serves as a core decoupled module under the **Django-Octo** structural framework ecosystem.
 
-This module guarantees strict database-to-head tag integrity, mapping dynamic SEO objects straight from a pre-populated PostgreSQL/SQLite layer directly into a semantic HTML5 rendering pipeline in a single database lookup.
+**django_octo_seo** is a production-grade, high-performance SEO injection engine and page management toolkit designed for scalable web infrastructures within the **Django-Octo** ecosystem. It features an interactive Header Code Generator and an integrated Django Admin Page Builder.
 
 ---
 
@@ -35,12 +34,15 @@ This module guarantees strict database-to-head tag integrity, mapping dynamic SE
 </p>
 
 
+
 ## 🔑 Key Architectural Features
 
 - **Unified Bot Controller:** Replaced fragmented crawler instructions (`Googlebot`, `Bingbot`, `Yandex`, `Baidu`) with an optimized single-pass meta-tag runtime execution.
 - **Single-Block JSON-LD Graphs:** Automated structural parsing of schema datasets (`WebSite`, `BlogPosting`) packaged into a single script rendering block to improve parsing speed.
 - **Absolute URL Context Binding:** Native cross-origin preview validation utilizing Django's schema handling (`request.scheme`) to prevent media preview degradation across international CDNs and messaging APIs (WhatsApp, Slack, LinkedIn).
 - **Rye Environment Integration:** Fully integrated with the ultra-fast Rust-based Python package manager for reliable dependency locks.
+• **Interactive Header Code Generator**: Visual tool to compile HTML5 <head> snippets for instant copy-pasting.
+• **Admin Page Provisioning**: Native Django Admin section to create pages pre-wired with 8-layer SEO and security headers.
 
 ---
 
